@@ -27,6 +27,7 @@ class Game():
     def restart(self):
         self.main.regen()
         self.lives = [add.Life(const.screen_width - (i + 1) * add.Life.img.w, 0) for i in range(const.lives_count)]
+        self.enemies = [characters.Enemy() for i in range(const.enemies_count)]
         self.time = const.start_time
         self.score = 0
         self.lives_count = const.lives_count
@@ -136,8 +137,6 @@ def MainLoop():
                     game.state += 1
                             
                 utils.draw(game)
-                for i in range(len(game.enemies)):
-                    print(i, game.enemies[i].x, game.enemies[i].y)
 
 
             case 2:

@@ -1,4 +1,4 @@
-res_count = 10
+res_count = 3
 lives_count = 3
 enemies_count = 5
 

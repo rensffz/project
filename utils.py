@@ -34,18 +34,21 @@ def draw(game):
     
 def win(game):
     game.screen.fill(const.bg)
+    clue = game.font.render('press SPACE to play again', True, (255, 255, 255))
+    clue_tw, clue_th = game.font.size('press SPACE to play again')
+    game.screen.blit(clue, ((const.screen_width // 2) - (clue_tw // 2) , const.screen_height - clue_th))
     congrats = game.font.render('congratulations! you won', True, (0, 0, 0))
     tw, th = game.font.size('congratulations! you won')
     game.screen.blit(game.env.time_text, (0, 0))
-    game.screen.blit(congrats, (const.screen_width // 2 - (tw // 2), const.screen_height // 2))
+    game.screen.blit(congrats, (const.screen_width // 2 - (tw // 2), const.screen_height // 2 - th))
     pygame.display.update()
 
 def lose(game):
     game.screen.fill(const.bg)
     texts = ['unfortunately, you lost!', 'do you want to try again?']
     clue = game.font.render('press SPACE to try again', True, (255, 255, 255))
-    tw, th = game.font.size('press SPACE to play')
-    game.screen.blit(clue, ((const.screen_width // 2) - (tw // 2) , const.screen_height - 52))
+    tw, th = game.font.size('press SPACE to try again')
+    game.screen.blit(clue, ((const.screen_width // 2) - (tw // 2) , const.screen_height - th))
     
     for i in range(len(texts)):
         w, h = game.font.size(texts[i])
