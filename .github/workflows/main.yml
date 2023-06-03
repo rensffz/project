@@ -10,8 +10,6 @@ jobs:
       - run: |
           pip install pygame
           pip install coverage
-          python setup.py install
-          python setup.py build_ext --inplace
           coverage run -m unittest discover
           coverage report -m
 
