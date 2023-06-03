@@ -56,5 +56,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: "rensffz_project"
+          SONAR_ORGANIZATION: "rensffz"
         run: |
-          sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
+            sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" \
+            --define sonar.projectKey="${{ env.SONAR_PROJECT_KEY }}" \
+            --define sonar.organization="${{ env.SONAR_ORGANIZATION }}"
