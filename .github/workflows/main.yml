@@ -22,41 +22,41 @@ jobs:
           coverage report -m
           coveralls
 
-sonarcloud-check:
-  needs: project-tests
-  runs-on: ubuntu-latest
-  env:
-    SONAR_SCANNER_VERSION: 4.6.1.2450
-    SONAR_SERVER_URL: "https://sonarcloud.io"
-  steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v1
-      with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
-    - name: Download and set up sonar-scanner
-      env:
-        SONAR_SCANNER_DOWNLOAD_URL: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip
-      run: |
-        mkdir -p $HOME/.sonar
-        curl -sSLo $HOME/.sonar/sonar-scanner.zip ${{ env.SONAR_SCANNER_DOWNLOAD_URL }} 
-        unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-        echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin" >> $GITHUB_PATH
-    - name: Run sonar-scanner
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_PROJECT_KEY: "rensffz_project"
-        SONAR_ORGANIZATION: "rensffz"
-      run: |
-        sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" \
-          --define sonar.projectKey="${{ env.SONAR_PROJECT_KEY }}" \
-          --define sonar.organization="${{ env.SONAR_ORGANIZATION }}"
+  sonarcloud-check:
+    needs: project-tests
+    runs-on: ubuntu-latest
+    env:
+      SONAR_SCANNER_VERSION: 4.6.1.2450
+      SONAR_SERVER_URL: "https://sonarcloud.io"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Download and set up sonar-scanner
+        env:
+          SONAR_SCANNER_DOWNLOAD_URL: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip
+        run: |
+          mkdir -p $HOME/.sonar
+          curl -sSLo $HOME/.sonar/sonar-scanner.zip ${{ env.SONAR_SCANNER_DOWNLOAD_URL }} 
+          unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+          echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin" >> $GITHUB_PATH
+      - name: Run sonar-scanner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: "rensffz_project"
+          SONAR_ORGANIZATION: "rensffz"
+        run: |
+          sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" \
+            --define sonar.projectKey="${{ env.SONAR_PROJECT_KEY }}" \
+            --define sonar.organization="${{ env.SONAR_ORGANIZATION }}"
