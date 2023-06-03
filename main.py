@@ -1,4 +1,4 @@
 import game
 
-game.GameInit()
-game.MainLoop()
+g = game.GameInit()
+game.MainLoop(g)

@@ -23,6 +23,7 @@ class Game():
                 #2 - конец
 
     result = 0
+    running = True
     
     def restart(self):
         self.main.regen()
@@ -35,24 +36,22 @@ class Game():
         self.result = 0
     
 def GameInit():
-    global screen, font, Timer, game
     
     pygame.init()
     game = Game()
     game.screen = pygame.display.set_mode((const.screen_width, const.screen_height))
     game.font = pygame.font.Font(const.font, const.font_size)
     game.timer = pygame.time.Clock()
+    return game
     
-def MainLoop():
-    global game, screen, font, Timer
+def MainLoop(game):
     
-    running = True
-    while running:
+    while game.running:
         match game.state:
             case 0:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
-                        running = False
+                        game.running = False
                     elif event.type == pygame.KEYDOWN:
                         if event.key ==pygame.K_SPACE:
                             game.state += 1
@@ -72,7 +71,7 @@ def MainLoop():
                 # обработка ввода с клавиатуры
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
-                        running = False
+                        game.running = False
                     elif event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                             game.main.vx -= const.character_vx
@@ -118,7 +117,6 @@ def MainLoop():
                     if game.score == const.res_count:
                         game.main.reset()
                         game.result = 1
-                        game.state += 1
 
                 for i in range(const.enemies_count):
                 
@@ -135,6 +133,8 @@ def MainLoop():
                             
                 if game.time <= 0:
                     game.state += 1
+                if game.result == 1:
+                    game.state += 1
                             
                 utils.draw(game)
 
@@ -144,7 +144,7 @@ def MainLoop():
                     utils.win(game)
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
-                            running = False
+                            game.running = False
                         elif event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_SPACE:
                                 game.restart()
@@ -153,7 +153,7 @@ def MainLoop():
                     utils.lose(game)
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
-                            running = False
+                            game.running = False
                         elif event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_SPACE:
                                 game.restart()

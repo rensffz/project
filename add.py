@@ -14,8 +14,10 @@ import sprites
         
 class Resource:
     img = sprites.Sprite(const.resource_img)
-    x = random.choice([x for x in range(const.left_border, const.right_border - img.w + 1) if x < const.start_x - characters.Main.img.w or x > const.start_x + characters.Main.img.w])
-    y = random.choice([y for y in range(const.upper_border, const.bottom_border - img.h + 1) if y > const.start_y + characters.Main.img.h or y < const.start_y - characters.Main.img.h])
+    
+    def __init__(self):
+        self.x = random.choice([x for x in range(const.left_border, const.right_border - self.img.w + 1) if x < const.start_x - characters.Main.img.w or x > const.start_x + characters.Main.img.w])
+        self.y = random.choice([y for y in range(const.upper_border, const.bottom_border - self.img.h + 1) if y > const.start_y + characters.Main.img.h or y < const.start_y - characters.Main.img.h])
 
     def regen(self):
         self.x = random.randint(const.left_border, const.right_border - self.img.w)

@@ -10,10 +10,12 @@ import random
 
 class Main:
     img = sprites.Sprite(const.character_img)
-    x = const.start_x
-    y = const.start_y
-    vx = 0
-    vy = 0
+    
+    def __init__(self):
+        self.x = const.start_x
+        self.y = const.start_y
+        self.vx = 0
+        self.vy = 0
     
     def reset(self):
         self.x = const.start_x
@@ -34,8 +36,8 @@ class Enemy:
         self.vy = random.randint(1, const.enemy_vy) * random.choice([-1, 1])
 
     def regen(self):
-        if (self.x >= const.start_x - Main.img.w - self.img.w and self.x <= const.start_x + Main.img.w + self.img.w) and (self.y >= const.start_y + Main.img.h + self.img.h and self.y <= const.start_y - Main.img.h - self.img.h):
-            x = random.choice([x for x in range(const.left_border, const.right_border - img.w + 1) if x < const.start_x - Main.img.w or x > const.start_x + Main.img.w])
-            y = random.choice([y for y in range(const.upper_border, const.bottom_border - img.h + 1) if y > const.start_y + Main.img.h or y < const.start_y - Main.img.h])
+        if (self.x >= const.start_x - Main.img.w - self.img.w and self.x <= const.start_x + Main.img.w + self.img.w) and (self.y <= const.start_y + Main.img.h + self.img.h and self.y >= const.start_y - Main.img.h - self.img.h):
+            self.x = random.choice([x for x in range(const.left_border, const.right_border - self.img.w + 1) if x < const.start_x - Main.img.w or x > const.start_x + Main.img.w])
+            self.y = random.choice([y for y in range(const.upper_border, const.bottom_border - self.img.h + 1) if y > const.start_y + Main.img.h or y < const.start_y - Main.img.h])
     
 
