@@ -15,7 +15,7 @@ jobs:
       - name: Install coveralls
         run: pip install coveralls
       - name: Coveralls
-        run: coveralls -t ${{ secrets.coveralls_token }} --root . -E ".*external.*" -E ".*tests.*"
+        run: coveralls -t ${{ secrets.COVERALLS_TOKEN }} --root . -E ".*external.*" -E ".*tests.*"
 
 
   sonarcloud-check:
