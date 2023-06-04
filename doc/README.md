@@ -209,7 +209,13 @@
 ## Реализация:
 
 В ходе реализации программы не было обнаружено расхождений с функциональными и структурными моделями.
-В ходе тестирования возникла необходимость добавить атрибут name к классу Sprite для сравнивания наименований изображений.
 
-
+## Ссылки на графическое представление структурных моделей проекта:
+- UML Activity Diagram (Character Movement): https://github.com/rensffz/project/blob/main/doc/UML%20AD%20Character%20Movement.pdf
+- UML Activity Diagram (Show Result): https://github.com/rensffz/project/blob/main/doc/UML%20AD%20Show%20Result.pdf
+- UML Activity Diagram (Start the Game): https://github.com/rensffz/project/blob/main/doc/UML%20AD%20Start%20the%20game.pdf
+- State Machine Diagram: https://github.com/rensffz/project/blob/main/doc/State%20Machine%20Diagram.pdf
+- Sequnece Diagram: https://github.com/rensffz/project/blob/main/doc/Sequence%20Diagram.pdf
+- Class Diagram: https://github.com/rensffz/project/blob/main/doc/Class%20Diagram.pdf
+- Component Diagram: https://github.com/rensffz/project/blob/main/doc/Component%20Diagram.pdf
 

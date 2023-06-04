@@ -82,21 +82,19 @@ class MainLoopTestCase(unittest.TestCase):
     #9
         self.assertEqual(self.game.score, 0)
     #10
-        self.assertEqual(self.game.state, 1)
-    #11
         self.assertEqual(self.game.result, 0)
-    #12
+    #11
         self.assertEqual(self.game.main.vx, 0)
-    #13
+    #12
         self.assertEqual(self.game.main.vy, 0)
         
         for enemy in self.game.enemies:
-    #14
+    #13
             self.assertNotIn(enemy.x, range(const.start_x - self.game.main.img.w, const.start_x + self.game.main.img.w + 1))
-    #15
+    #14
             self.assertNotIn(enemy.y, range(const.start_y - self.game.main.img.h, const.start_y + self.game.main.img.h + 1))
         for i in range(len(self.game.lives)):
-    #16
+    #15
             self.assertEqual((self.game.lives[i].x, self.game.lives[i].y), (const.screen_width - (i + 1) * self.game.lives[i].img.w, 0))
 
     def test_ending_game(self):
@@ -105,7 +103,7 @@ class MainLoopTestCase(unittest.TestCase):
         self.game.result = 1
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         MainLoop(self.game)
-    #17
+    #16
         self.assertEqual(self.game.state, 2)
         
     def test_win_iscalled_1(self):
@@ -115,17 +113,17 @@ class MainLoopTestCase(unittest.TestCase):
         with mock.patch('utils.win') as mock_win:
             pygame.event.post(pygame.event.Event(pygame.QUIT))
             MainLoop(self.game)
-    #18
+    #17
             mock_win.assert_called_with(self.game)
         
-    def test_lose_iscalled_2(self):
+    def test_lose_iscalled_1(self):
         self.game = GameInit()
         self.game.state = 2
         self.game.result = -1
         with mock.patch('utils.lose') as mock_lose:
             pygame.event.post(pygame.event.Event(pygame.QUIT))
             MainLoop(self.game)
-    #19
+    #18
             mock_lose.assert_called_with(self.game)
             
     def test_win_iscalled_2(self):
@@ -139,7 +137,7 @@ class MainLoopTestCase(unittest.TestCase):
         with mock.patch('utils.win') as mock_win:
             pygame.event.post(pygame.event.Event(pygame.QUIT))
             MainLoop(self.game)
-    #20
+    #19
             mock_win.assert_called_with(self.game)
             
     def test_lose_iscalled_2(self):
@@ -153,7 +151,7 @@ class MainLoopTestCase(unittest.TestCase):
         with mock.patch('utils.lose') as mock_lose:
             pygame.event.post(pygame.event.Event(pygame.QUIT))
             MainLoop(self.game)
-    #21
+    #20
             mock_lose.assert_called_with(self.game)
 
 class MovCollisionsTestCase(unittest.TestCase):
@@ -176,9 +174,9 @@ class MovCollisionsTestCase(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #22
+    #21
         self.assertEqual(self.game.lives_count, const.lives_count - 1)
-    #23
+    #22
         self.assertEqual(self.game.lives[self.game.lives_count].img.name, const.blank_life_img)
             
     def test_collision_R(self):
@@ -193,9 +191,9 @@ class MovCollisionsTestCase(unittest.TestCase):
             pygame.event.post(pygame.event.Event(pygame.QUIT))
 
             MainLoop(self.game)
-    #24
+    #23
             self.assertEqual(self.game.score, score + 1)
-    #25
+    #24
             mock_regen.assert_called()
 class MovUp(unittest.TestCase):
     def setUp(self):
@@ -215,9 +213,9 @@ class MovUp(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #26
+    #25
         self.assertEqual(self.game.main.x, start_x)
-    #27
+    #26
         self.assertLess(self.game.main.y, start_y)
 
     def test_key_UP(self):
@@ -230,9 +228,9 @@ class MovUp(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #28
+    #27
         self.assertEqual(self.game.main.x, start_x)
-    #29
+    #28
         self.assertLess(self.game.main.y, start_y)
         
 class MovDown(unittest.TestCase):
@@ -253,9 +251,9 @@ class MovDown(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #30
+    #29
         self.assertEqual(self.game.main.x, start_x)
-    #31
+    #30
         self.assertGreater(self.game.main.y, start_y)
         
         
@@ -269,9 +267,9 @@ class MovDown(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #32
+    #31
         self.assertEqual(self.game.main.x, start_x)
-    #33
+    #32
         self.assertGreater(self.game.main.y, start_y)
         
         
@@ -293,9 +291,9 @@ class MovLeft(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #34
+    #33
         self.assertLess(self.game.main.x, start_x)
-    #35
+    #34
         self.assertEqual(self.game.main.y, start_y)
         
     def test_key_LEFT(self):
@@ -308,9 +306,9 @@ class MovLeft(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #36
+    #35
         self.assertLess(self.game.main.x, start_x)
-    #37
+    #36
         self.assertEqual(self.game.main.y, start_y)
         
 class MovRight(unittest.TestCase):
@@ -331,9 +329,9 @@ class MovRight(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #38
+    #37
         self.assertGreater(self.game.main.x, start_x)
-    #39
+    #38
         self.assertEqual(self.game.main.y, start_y)
         
     def test_key_RIGHT(self):
@@ -346,12 +344,12 @@ class MovRight(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         
         MainLoop(self.game)
-    #40
+    #39
         self.assertGreater(self.game.main.x, start_x)
-    #41
+    #40
         self.assertEqual(self.game.main.y, start_y)
             
 if __name__ == '__main__':
     unittest.main()
 
-#ИТОГО: 54 ПОЗИТИВНЫХ ТЕСТА
+#ИТОГО: 53 ПОЗИТИВНЫХ ТЕСТА

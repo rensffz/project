@@ -34,7 +34,6 @@ class LifeTestCase(unittest.TestCase):
     #2
         self.assertEqual(self.life.img.name, const.blank_life_img)
 
-
 if __name__ == '__main__':
     unittest.main()
 

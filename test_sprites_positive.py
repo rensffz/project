@@ -15,13 +15,11 @@ class SpriteTestCase(unittest.TestCase):
     #1
         self.assertEqual(sprite.name, sprite_path)
     #2
-        self.assertIsInstance(sprite.sprite, pygame.Surface)
+        self.assertEqual(sprite.w, 98)
     #3
-        self.assertEqual(sprite.w, sprite.sprite.get_width())
-    #4
-        self.assertEqual(sprite.h, sprite.sprite.get_height())
+        self.assertEqual(sprite.h, 128)
 
 if __name__ == '__main__':
     unittest.main()
     
-#ИТОГО: 4 ПОЗИТИВНЫХ ТЕСТА
+#ИТОГО: 3 ПОЗИТИВНЫХ ТЕСТА

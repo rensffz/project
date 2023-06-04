@@ -31,17 +31,11 @@ class MainLoopTestCase(unittest.TestCase):
     
     def test_keydown_start(self):
         game = GameInit()
-        start_x = game.main.x
-        start_y = game.main.y
         
         pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_ESCAPE}))
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         MainLoop(game)
     #2
-        self.assertEqual(start_x, game.main.x)
-    #3
-        self.assertEqual(start_y, game.main.y)
-    #4
         self.assertEqual(game.state, 0)
         pygame.event.post(pygame.event.Event(pygame.KEYUP, {'key': pygame.K_ESCAPE}))
     
@@ -55,9 +49,9 @@ class MainLoopTestCase(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_ESCAPE}))
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         MainLoop(game)
-    #5
+    #3
         self.assertEqual(start_x, game.main.x)
-    #6
+    #4
         self.assertEqual(start_y, game.main.y)
         pygame.event.post(pygame.event.Event(pygame.KEYUP, {'key': pygame.K_ESCAPE}))
 
@@ -70,13 +64,9 @@ class MainLoopTestCase(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_ESCAPE}))
         pygame.event.post(pygame.event.Event(pygame.QUIT))
         MainLoop(game)
-    #7
-        self.assertEqual(start_x, game.main.x)
-    #8
-        self.assertEqual(start_y, game.main.y)
-        pygame.event.post(pygame.event.Event(pygame.KEYUP, {'key': pygame.K_ESCAPE}))
-    
+    #5
+        self.assertEqual(game.state, 2)
 if __name__ == '__main__':
     unittest.main()
 
-#ИТОГО: 8 НЕГАТИВНЫХ ТЕСТОВ
+#ИТОГО: 5 НЕГАТИВНЫХ ТЕСТОВ

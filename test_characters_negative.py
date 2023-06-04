@@ -11,8 +11,10 @@ class MainTestCase(unittest.TestCase):
         self.main = Main()
 
     def test_reset(self):
-        self.main.x = 123456789
+        self.main.x = -123456789
         self.main.y = 987654321
+        self.main.vx = -103900923902
+        self.main.vy = 9239809029009340034
         prev_vx = self.main.vx
         prev_vy = self.main.vy
         self.main.reset()
@@ -28,9 +30,11 @@ class MainTestCase(unittest.TestCase):
     def test_regen(self):
     
         self.main.x = 10**5
-        self.main.y = 10**7
+        self.main.y = -10**7
         self.main.vx = 1000
         self.main.vy = -1000
+        prev_vx = self.main.vx
+        prev_vy = self.main.vy
         self.main.regen()
     #1
         self.assertEqual(self.main.x, const.start_x)
@@ -39,9 +43,13 @@ class MainTestCase(unittest.TestCase):
     #3
         self.assertEqual(self.main.vx, 0)
     #4
+        self.assertNotEqual(self.main.vx, prev_vx)
+    #5
         self.assertEqual(self.main.vy, 0)
+    #6
+        self.assertNotEqual(self.main.vy, prev_vy)
         
 if __name__ == '__main__':
     unittest.main()
     
-#ИТОГО: 8 НЕГАТИВНЫХ ТЕСТОВ
+#ИТОГО: 10 НЕГАТИВНЫХ ТЕСТОВ

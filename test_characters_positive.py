@@ -11,6 +11,10 @@ class MainTestCase(unittest.TestCase):
         self.main = Main()
 
     def test_reset(self):
+        self.main.x = 10
+        self.main.y = -10
+        self.main.vx = 5
+        self.main.vy = -6
         prev_vx = self.main.vx
         prev_vy = self.main.vy
         self.main.reset()
@@ -24,11 +28,13 @@ class MainTestCase(unittest.TestCase):
         self.assertEqual(self.main.vy, prev_vy)
 
     def test_regen(self):
-        self.main.vx = 5
-        self.main.vy = -7
+    
+        self.main.x = -10
+        self.main.y = 10
+        self.main.vx = -5
+        self.main.vy = 6
         prev_vx = self.main.vx
         prev_vy = self.main.vy
-    
         self.main.regen()
     #1
         self.assertEqual(self.main.x, const.start_x)
@@ -37,9 +43,9 @@ class MainTestCase(unittest.TestCase):
     #3
         self.assertEqual(self.main.vx, 0)
     #4
-        self.assertNotEqual(self.main.vx, prev_vx)
-    #5
         self.assertEqual(self.main.vy, 0)
+    #5
+        self.assertNotEqual(self.main.vx, prev_vx)
     #6
         self.assertNotEqual(self.main.vy, prev_vy)
         
