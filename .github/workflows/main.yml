@@ -1,4 +1,4 @@
-name: CI/CD GitHub Actions
+name: GitHub Actions
 on: [push]
 jobs:
   project-tests:
