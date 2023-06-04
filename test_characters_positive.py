@@ -24,6 +24,10 @@ class MainTestCase(unittest.TestCase):
         self.assertEqual(self.main.vy, prev_vy)
 
     def test_regen(self):
+        self.main.vx = 5
+        self.main.vy = -7
+        prev_vx = self.main.vx
+        prev_vy = self.main.vy
     
         self.main.regen()
     #1
@@ -33,7 +37,11 @@ class MainTestCase(unittest.TestCase):
     #3
         self.assertEqual(self.main.vx, 0)
     #4
+        self.assertNotEqual(self.main.vx, prev_vx)
+    #5
         self.assertEqual(self.main.vy, 0)
+    #6
+        self.assertNotEqual(self.main.vy, prev_vy)
         
 class EnemyTestCase(unittest.TestCase):
     def setUp(self):
@@ -60,3 +68,4 @@ class EnemyTestCase(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
     
+#ИТОГО: 14 ПОЗИТИВНЫХ ТЕСТОВ

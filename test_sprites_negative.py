@@ -17,3 +17,5 @@ class SpriteTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+#ИТОГО: 1 НЕГАТИВНЫЙ ТЕСТ

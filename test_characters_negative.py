@@ -44,3 +44,4 @@ class MainTestCase(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
     
+#ИТОГО: 8 НЕГАТИВНЫХ ТЕСТОВ

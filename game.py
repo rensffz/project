@@ -135,6 +135,8 @@ def MainLoop(game):
                     game.state += 1
                 if game.result == 1:
                     game.state += 1
+                if game.result == -1:
+                    game.state += 1
                             
                 utils.draw(game)
 

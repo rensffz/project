@@ -20,8 +20,6 @@ class Main:
     def reset(self):
         self.x = const.start_x
         self.y = const.start_y
-        #self.vx = 0
-        #self.vy = 0
     def regen(self):
         self.reset()
         self.vx = 0
